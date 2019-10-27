@@ -1,6 +1,14 @@
 @require: stdjareport
 @require: itemize
+@require: proof
 
+let-math \state = ${\sigma} in
+let-math \op = ${\mathop{\mathrm{op}}} in
+let-math \comp = ${\mathop{\mathrm{comp}}} in
+let-math \EIf cond thenCase elseCase = ${\mathop{\mathrm{if}} #cond \mathop{\mathrm{then}} #thenCase \mathop{\mathrm{else}} #elseCase} in
+let-math \EWhile cond body = ${\mathop{\mathrm{while}} #cond \mathop{\mathrm{do}} #body} in
+let-math \pair left right = ${\angle-bracket{#left, #right}} in
+let-math \denotes expr = ${\[\[#expr\]\]} in
 document (|
     title = {３種の意味論についての個人メモ};
     author = {ゆーちき};
@@ -19,21 +27,44 @@ document (|
                         x \mid
                         n \mid
                         b \mid
-                        e \mathop{\mathrm{op}} e \mid
-                        e \mathop{\mathrm{comp}} e
+                        e \op e \mid
+                        e \comp e
                 |};
                 ${|
                     c |\coloneq
                         \mathrm{nil} \mid
-                        c\mathop{\;} c \mid
-                        \mathop{\mathrm{if}} e \mathop{\mathrm{then}} c \mathop{\mathrm{else}} c \mid
-                        \mathop{\mathrm{while}} c \mathop{\mathrm{do}} c
+                        c \mathop{\;} c \mid
+                        \EIf{e}{c}{c} \mid
+                        \EWhile{e}{c}
                 |}
             ];%
         }
     >
     +chapter{操作的意味論}<
-
+        +p {
+            ${e}については以下のように定義される。
+            \align[
+                ${| \pair{x}{\state} \to \app{\state}{x} |};
+                ${| \pair{n}{\state} \to n |};
+                ${| \pair{b}{\state} \to b |};
+                ${| \derive{
+                        | \pair{e_1}{\state} \to n_1
+                        | \pair{e_2}{\state} \to n_2
+                        | n_1 \denotes{\op} n_2 = n_3
+                    |}{
+                        \pair{e_1 \op e_2}{\state} \to n_3
+                    }
+                |};
+                ${| \derive{
+                        | \pair{e_1}{\state} \to n_1
+                        | \pair{e_2}{\state} \to n_2
+                        | n_1 \denotes{\comp} n_2 = b
+                    |}{
+                        \pair{e_1 \comp e_2}{\state} \to b
+                    }
+                |}
+            ];
+        }
     >
     +chapter{表示的意味論}<
 
