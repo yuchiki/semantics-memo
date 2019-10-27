@@ -1,0 +1,52 @@
+@require: stdjareport
+@require: itemize
+
+document (|
+    title = {３種の意味論についての個人メモ};
+    author = {ゆーちき};
+|) '<
+    +chapter{目的}<
+        +p{
+            ３種類の意味論について、理解があやふやになってきたので見返す用の資料を作る。
+        }
+    >
+    +chapter{構文}<
+        +p{
+            今回扱う言語の構文を説明する。
+            \align[
+                ${|
+                    e |\coloneq
+                        x \mid
+                        n \mid
+                        b \mid
+                        e \mathop{\mathrm{op}} e \mid
+                        e \mathop{\mathrm{comp}} e
+                |};
+                ${|
+                    c |\coloneq
+                        \mathrm{nil} \mid
+                        c\mathop{\;} c \mid
+                        \mathop{\mathrm{if}} e \mathop{\mathrm{then}} c \mathop{\mathrm{else}} c \mid
+                        \mathop{\mathrm{while}} c \mathop{\mathrm{do}} c
+                |}
+            ];%
+        }
+    >
+    +chapter{操作的意味論}<
+
+    >
+    +chapter{表示的意味論}<
+
+    >
+    +chapter{公理的意味論}<
+
+    >
+    +chapter{参考にした資料}<
+        +listing{
+            * http://www2.toyo.ac.jp/~y-mizuno/Lang/pdf/proglang_09_semantics.pdf
+            * http://www.kurims.kyoto-u.ac.jp/~kenkyubu/kokai-koza/H28-hasegawa.pdf
+            * http://stap.ait.kyushu-u.ac.jp/~zhao/course/2017/2017-L06-Syntax\%20and\%20Semantics-20170518.pdf
+
+        }
+    >
+>
