@@ -15,11 +15,34 @@ document (|
 |) '<
     +chapter{目的}<
         +p{
-            ３種類の意味論について、理解があやふやになってきたので見返す用の資料を作る。
+            ３種類の意味論について、理解があやふやになってきたので見返す用の資料を作る。これは個人用メモであり、内容の正しさは保証しない。
+        }
+    >
+    +chapter{概説}<
+        +p{
+            \dfn{操作的意味論}は実行や手続きの面からプログラムの性質について論じる。\dfn{small-step semantics}と\dfn{big-step semantics}が存在する。
+            small-step semantics (structural operational semantics)では、個々の計算ステップがコンピューター的なモデルの中でどう起こるかを記述する。
+            big-step semantics (natural semantics)では、評価の最終的な結果がどう得られるかを記述する。
+        }
+        +p{
+            \dfn{表示的意味論}は式の意味を表す数学的対象（denotation）を構成することによってプログラムの意味を形式化する。プログラムは部分関数や環境とシステムの間のゲームとして表現されうる。
+            意味論は合成的である。ある句のdenotationは部分句のdenotationから構築される。
+
+        }
+        +p{
+            \dfn{公理的意味論}は数理論理によってプログラムの正しさを証明する手法。ホーア論理と深く関係している。
+            プログラムのコマンドの意味を、プログラム状態に対するアサーションへの影響を表現することで定義する。
+            アサーションは論理的言明である。つまり、変数を持った述語であり、この変数はプログラム状態を定義するものである。
+        }
+        +p{
+            以上の記述はWikipediaの要約である。 (\SATySFi;における引用の仕方がわからない...)
+            以上の３種類があるが、現在においてはこの３種類は相互に関連しあって発展し合っており、それぞれが他の要素と関連している。
         }
     >
     +chapter{構文}<
         +p{
+            ここの構文は、http://www.yl.is.s.u-tokyo.ac.jp/~koichi/gengo.model.2007/slides/gengo.model.chap6.07.pdf を参考にしている。
+
             今回扱う言語の構文を説明する。
             \align[
                 ${|
@@ -42,6 +65,8 @@ document (|
     >
     +chapter{操作的意味論}<
         +p {
+            http://www.yl.is.s.u-tokyo.ac.jp/~koichi/gengo.model.2007/slides/gengo.model.chap6.07.pdf を参考にしている。
+
             ${e}については以下のように定義される。
             \align[
                 ${| \pair{x}{\state} \to \app{\state}{x} |};
@@ -50,7 +75,7 @@ document (|
                 ${| \derive{
                         | \pair{e_1}{\state} \to n_1
                         | \pair{e_2}{\state} \to n_2
-                        | n_1 \denotes{\op} n_2 = n_3
+                        | \paren{n_1 \op n_2 = n_3}
                     |}{
                         \pair{e_1 \op e_2}{\state} \to n_3
                     }
@@ -58,12 +83,13 @@ document (|
                 ${| \derive{
                         | \pair{e_1}{\state} \to n_1
                         | \pair{e_2}{\state} \to n_2
-                        | n_1 \denotes{\comp} n_2 = b
+                        | \paren{n_1 \comp n_2 = b}
                     |}{
                         \pair{e_1 \comp e_2}{\state} \to b
                     }
                 |}
             ];
+            時間切れ
         }
     >
     +chapter{表示的意味論}<
